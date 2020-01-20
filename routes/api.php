@@ -19,3 +19,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register', 'UserController@register');
 Route::post('login', 'UserController@login');
+
+Route::group(['middleware' => ['jwt.verify']], function() {
+    Route::get('contoh', function() {
+        $contoh = [
+            'id' => '012',
+            'name' => 'admin'
+        ];
+        return $contoh;
+    });
+});
